@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #5e057e;
+            color: #fff;
+            border-radius: 8px;
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .form-group input[type="submit"] {
+            background-color: #fff;
+            color: #5e057e;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #c299d0;
+            color: #fff;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c299d0; /* Secondary color */
+            color: #5e057e; /* Primary color */
+            text-align: center;
+            padding: 100px;
+        }
+        .success-message {
+            background-color: #5e057e; /* Primary color */
+            color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <div class="success-message">
+
+    <div th:if="${param.success}">
+        <h2>Registration Successful</h2>
+        <p>Your account has been created successfully. Welcome!</p>
+    </div>
+    </div>
+    <h2>Registration</h2>
+    <form
+        method="post" role="form" th:action="@{/register}" th:object="${user}"
+    >
+        <div class="form-group">
+            <label for="fullname">Fullname</label>
+            <input th:field="*{fullname}" type="text" id="fullname" name="fullname" placeholder="Enter your fullname" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input th:field="*{username}" type="text" id="username" name="username" placeholder="Enter your Username" required>
+            <span th:if="${userexits}" style="color:red;">User name is taken</span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input th:field="*{password}" type="password" id="password" name="password" placeholder="password" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    <span> Alredy registered <a th:href="@{/login}">Login</a></span>
+</div>
+</body>
+</html>
+

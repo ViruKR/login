@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* White background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard {
+            background-color: #c299d0; /* Secondary color */
+            color: #5e057e; /* Primary color */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dashboard h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .dashboard p {
+            font-size: 18px;
+        }
+
+        .dashboard .dashboard_user-name {
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <h1 class="dashboard_title">Welcome to Your Dashboard</h1>
+    <div class="dashboard_user">
+        <h2 th:text="${userDetail.fullname}" class="dashboard_user-name">User's Name</h2>
+    </div>
+</div>
+<span sec:authorize="isAuthenticated"><a th:href="@{/logout}">Logout</a></span>
+</body>
+</html>
